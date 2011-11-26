@@ -1,5 +1,5 @@
 /*===========================================================================
-  HTML5 Express Boilerplate ("H5EB")
+  MOTIVATION
 ============================================================================= */
 
 
@@ -18,7 +18,10 @@ var express = require('express'),
     sys = require('util'),
     mime = require('mime'),
     cleanCSS = require('clean-css'),
-    app = module.exports = express.createServer();
+    uuid = require('dirty-uuid');
+    var app = module.exports = express.createServer();
+
+
 
 
 /*===========================================================================
@@ -126,14 +129,22 @@ app.use(function(err, req, res, next){
 /*===========================================================================
   YOUR ROUTES
 ============================================================================= */
-
 // Index
 app.get('/', function(req, res) {
   res.render('index', {
     modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
     jquery: "javascripts/libs/jquery-1.7.1.min.js",
-    title: 'this is a title',
-    description: 'this is a description'
+    title: 'Motivation',
+    new_user_id: uuid()
+  });
+});
+
+app.get('/user/:id', function(req, res) {
+  res.render('user', {
+    modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
+    jquery: "javascripts/libs/jquery-1.7.1.min.js",
+    title: 'Motivation',
+    user_id: req.params.id
   });
 });
 

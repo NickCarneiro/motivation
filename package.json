@@ -1,6 +1,6 @@
 {
-  "name": "Express-EJS-Boilerplate",
-  "description": "HTML5 Express EJS Boilerplate. None of that jade or stylus business. Straight CSS and EJS templating.",
+  "name": "Motivation",
+  "description": "Stay motivated by recording your completed tasks.",
   "version": "0.0.1",
   "author": "Nick Carneiro <nickc@trillworks.com>",
   "contributors": [
@@ -15,12 +15,9 @@
     , "mime": ">= 1.2.2"
     , "commander": ">= 0.1.0"
     , "clean-css": ">= 0.2.4"
+    , "dirty-uuid": ">= 0.0.2"
   },
   "main": "server.js",
-  "keywords": ["h5eb", "html5", "express", "boilerplate", "ejs"],
-  "repository": "git://github.com/niftylettuce/html5-express-boilerplate",
-  "bin": { "h5eb": "./bin/h5eb" },
-  "scripts": { "prepublish" : "npm prune" },
-  "engines": { "node": ">= 0.4.9 < 0.7.0" }
+  "keywords": ["motivation", "html5"],
+  "repository": "git://github.com/NickCarneiro/motivation"
 }
-
