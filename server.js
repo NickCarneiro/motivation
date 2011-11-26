@@ -141,8 +141,11 @@ app.get('/', function(req, res) {
 
 app.get('/user/:id', function(req, res) {
   res.render('user', {
-    modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
-    jquery: "javascripts/libs/jquery-1.7.1.min.js",
+    modernizr: "/javascripts/libs/modernizr-2.0.6.min.js",
+    jquery: "/javascripts/libs/jquery-1.7.1.min.js",
+    javascripts: ["/libs/css3-mediaqueries.js"],
+    stylesheets: ["1140.css", "style.css"],
+
     title: 'Motivation',
     user_id: req.params.id
   });
