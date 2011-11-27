@@ -28,7 +28,7 @@ var express = require('express'),
   SETTINGS
 ============================================================================= */
 
-var port = 4000,
+var port = 3050,
     cacheAge = 60000 * 60 * 24 * 365,
     logs = {
       set: false,
@@ -134,6 +134,8 @@ app.get('/', function(req, res) {
   res.render('index', {
     modernizr: "javascripts/libs/modernizr-2.0.6.min.js",
     jquery: "javascripts/libs/jquery-1.7.1.min.js",
+    javascripts: [],
+    stylesheets: ["1140.css", "style.css"],
     title: 'Motivation',
     new_user_id: uuid()
   });
@@ -143,7 +145,7 @@ app.get('/user/:id', function(req, res) {
   res.render('user', {
     modernizr: "/javascripts/libs/modernizr-2.0.6.min.js",
     jquery: "/javascripts/libs/jquery-1.7.1.min.js",
-    javascripts: ["/libs/css3-mediaqueries.js"],
+    javascripts: ["/libs/css3-mediaqueries.js", "/libs/jquery.tmpl.min.js", "script.js"],
     stylesheets: ["1140.css", "style.css"],
 
     title: 'Motivation',
