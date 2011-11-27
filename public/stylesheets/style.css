@@ -219,42 +219,39 @@ body {
 	background: url("/images/bg.png");
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
-.left{
+.column{
 	box-shadow:1px 0px 10px #ADADAD;
+	background: #fff;
+	margin-bottom: 10px;
 }
 
-.center{
-	box-shadow:1px 0px 10px #ADADAD;
-}
-	
-.right{
-	box-shadow:1px 0px 10px #ADADAD;
-}
+
 
 .col_title {
 	display: block;
 	margin: 0px auto;
-	margin: 15px 0px 15px 15px;
+	margin: 15px 0px 5px 10px;
 	font-size: 30px;
 }
 .top_input{
 	font-size: 25px;
 	height: 30px;
-	width: 300px;
+	width: 90%;
+	margin: 0px 0px 10px 10px;
 }
 
 .date{
 	text-align: center;
 	margin: 0px auto;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	width: 400px;
 	font-size: 30px;
 	color: #ccc;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #fff;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 li {
@@ -283,6 +280,7 @@ li {
 	color: #000;
 	font-style: underline;
 }
+
 
 /* ============================= */
 /* ! Layout for mobile version   */

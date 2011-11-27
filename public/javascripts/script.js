@@ -101,11 +101,12 @@ list: [
 			this.addToToday(item, col);
 		} else {
 			//create a day for today
-			var current_date = (new Date()).getTime();
+			var now = (new Date()).getTime();
+			var now_string = data.millisToNiceString(now)
 			var new_day = 
 				{
-					date: current_date,
-					date_string: data.millisToNiceString(current_date),
+					date: now,
+					date_string: now_string,
 					accomplished: [],
 					regret: [],
 					goals: []

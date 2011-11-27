@@ -2,16 +2,16 @@
 <div id="main_container" class="container">
 	<div class="row">
 		
-		<div class="fourcol left">
+		<div class="fourcol column">
 			<div class="col_title">Accomplished: </div>
 			<input id="accomplished_input" class="top_input" type="text" />
 		</div>
-		<div class="fourcol center">
+		<div class="fourcol column">
 			<div class="col_title">Regret: </div>
 			<input id="regret_input" class="top_input" type="text" />
 
 		</div>
-		<div class="fourcol last right">
+		<div class="fourcol last column">
 			<div class="col_title">Goals: </div>
 			<input id="goals_input" class="top_input" type="text" />
 		</div>
@@ -19,13 +19,15 @@
 		
 	</div>
 	<div id="data_container">
+		<!-- This div is emptied out and day rows are inserted here-->
 		<div class="row">
 			<div class="twelvecol last">
 				<div class="date">Loading data...</div>
 			</div>
 		</div>
 	</div>
-	<!-- day rows are inserted here-->
+	
+	<div class="twelvecol bottom_space"></div>
 	
 </div>
 
@@ -36,19 +38,19 @@
 		</div>
 	</div>
     <div class="row">
-		<div class="fourcol left">
+		<div class="fourcol column">
 			<ul>
 				{{each accomplished}}<li>${$value}</li>{{/each}}
 			</ul>
 		</div>
 
-		<div class="fourcol center">
+		<div class="fourcol column">
 			<ul>
 				{{each regret}}<li>${$value}</li>{{/each}}
 			</ul>
 		</div>
 
-		<div class="fourcol right last">
+		<div class="fourcol column last">
 			<ul>
 				{{each goals}}<li>${$value}</li>{{/each}}
 			</ul>
