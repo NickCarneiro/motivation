@@ -19,7 +19,7 @@ var data = {
 	current_date: (new Date()).getTime() ,
 	//list array contains ALL of the user's data
 	//assume it is sorted in reverse chronological order
-	list: [] , //see reference list array below
+	//list: [] , //see reference list array below
 
 	init: function(){
 		data.user_id = $("#user_id").val();
@@ -33,27 +33,37 @@ var data = {
 		var store = JSON.parse(localStorage.getItem("motivation"));
 		if(store != null){
 			this.list = store;
+		} else {
+			this.list = [];
 		}
 		
 	},
-/* reference list array 
 
-list: [
+	dirtyUuid: function(){
+		var uuid = '';
+		for (var i = 0; i < 32; i++) {
+			uuid += Math.floor(Math.random() * 16).toString(16);
+		}
+		return uuid;
+	},
+	 //reference list array 
+	/*
+	list: [
 		{	date: 628664265000,
 			date_string: undefined,
-			accomplished: ["Took out the trash", "walked the dog"],
+			accomplished: [{text: "met with santa", uuid: "fb6f43b0-1aa3-11e1-bddb-0800200c9366"}, {uuid: "036b06d0-1aa4-11e1-bddb-0800200c9466", text:"raised point"}],
 			regret: ["ran red light", "stole candy from baby again"],
 			goals: ["meet librarian"]
 		} ,
 		{	date: 628577865000,
 			date_string: undefined,
-			accomplished: ["Got born", "walked the dog"],
+			accomplished: [{text: "Got born", uuid: "fb6f43b0-1aa3-11e1-bddb-0800200c9a66"}, {uuid: "036b06d0-1aa4-11e1-bddb-0800200c9a66", text:"walked the dog"}],
 			regret: ["punched a cop", "stole candy from baby"],
 			goals: ["make sandwich", "become president"]
 		} 
-		
-	] 
-*/
+			
+		] ,
+	*/
 
 	//MILLI A MILLI A MILLI
 	millisToNiceString: function(millis){
@@ -117,8 +127,7 @@ list: [
 			this.addToToday(item,col);
 		}
 
-		//persist everything in localStorage
-		localStorage.setItem("motivation", JSON.stringify(this.list));
+		this.save();
 	} ,
 	//push item onto today's appropriate column
 	addToToday: function(item, col){
@@ -133,6 +142,39 @@ list: [
 		}
 
 		
+	} ,
+	removeItem: function(uuid, column){
+		
+		for(var i = 0; i < this.list.length; i++){
+
+			if(column === "accomplished"){
+				for(var j = 0; j < this.list[i].accomplished.length; j++){	
+					if(this.list[i].accomplished[j].uuid === uuid){
+						this.list[i].accomplished.splice(j, 1);
+					}
+				}
+			} else if(column === "regret"){
+				for(var j = 0; j < this.list[i].regret.length; j++){	
+					if(this.list[i].regret[j].uuid === uuid){
+						this.list[i].regret.splice(j, 1);
+					}
+				}
+				
+			} else if(column === "goals"){
+				for(var j = 0; j < this.list[i].goals.length; j++){	
+					if(this.list[i].goals[j].uuid === uuid){
+						this.list[i].goals.splice(j, 1);
+					}
+				}
+				
+			}
+		}
+		this.save();
+		
+	} ,
+	save: function(){
+		//persist everything in localStorage
+		localStorage.setItem("motivation", JSON.stringify(this.list));
 	}
 
 };
@@ -147,7 +189,7 @@ $(function(){
 	//wire up all UI events
 	$("#accomplished_input").keyup(function(e){
 		if(e.which === 13){
-			data.addItem($(this).val(), "accomplished");
+			data.addItem({text:$(this).val(), uuid: data.dirtyUuid()}, "accomplished");
 			$(this).val("");
 			ui.renderAll();
 		}
@@ -155,7 +197,7 @@ $(function(){
 
 	$("#regret_input").keyup(function(e){
 		if(e.which === 13){
-			data.addItem($(this).val(), "regret");
+			data.addItem({text:$(this).val(), uuid: data.dirtyUuid()}, "regret");
 			$(this).val("");
 			ui.renderAll();
 		}
@@ -163,10 +205,27 @@ $(function(){
 
 	$("#goals_input").keyup(function(e){
 		if(e.which === 13){
-			data.addItem($(this).val(), "goals");
+			data.addItem({text:$(this).val(), uuid: data.dirtyUuid()}, "goals");
 			$(this).val("");
 			ui.renderAll();
 		}
+	});
+
+	//deletions
+	$(".destroy").live("click", function(){
+		var uuid = $(this).attr("data-uuid");
+		var column = "";
+		if($(this).hasClass("accomplished")){
+			column = "accomplished"
+		} else if($(this).hasClass("regret")){
+			column = "regret";
+		} else if($(this).hasClass("goals")){
+			column = "goals";
+		} else {
+			console.log("fatal error. span with clicked that didn't belong to a recognized column.");
+		}
+		data.removeItem(uuid, column);
+		ui.renderAll();
 	});
 
 	//load in data

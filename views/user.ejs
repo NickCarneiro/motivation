@@ -27,8 +27,7 @@
 		</div>
 	</div>
 	
-	<div class="twelvecol bottom_space"></div>
-	
+
 </div>
 
 <script id="day_template" type="text/x-jquery-tmpl">
@@ -40,19 +39,22 @@
     <div class="row">
 		<div class="fourcol column">
 			<ul>
-				{{each accomplished}}<li>${$value}</li>{{/each}}
+				{{each(i, accomplished) accomplished}}<li>${accomplished.text} 
+					<span data-uuid="${accomplished.uuid}" class="destroy accomplished"></span></li>{{/each}}
 			</ul>
 		</div>
 
 		<div class="fourcol column">
 			<ul>
-				{{each regret}}<li>${$value}</li>{{/each}}
+				{{each(i, regret) regret}}<li>${regret.text} 
+					<span data-uuid="${regret.uuid}" class="destroy regret"></span></li>{{/each}}
 			</ul>
 		</div>
 
 		<div class="fourcol column last">
 			<ul>
-				{{each goals}}<li>${$value}</li>{{/each}}
+				{{each(i, goal) goals}}<li>${goal.text} 
+					<span data-uuid="${goal.uuid}" class="destroy goals"></span></li>{{/each}}
 			</ul>
 		</div>
 	</div>

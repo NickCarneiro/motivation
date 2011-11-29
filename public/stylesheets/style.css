@@ -281,6 +281,21 @@ li {
 	font-style: underline;
 }
 
+.destroy {
+	margin-right: 20px;
+	float: right;
+	display: none;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	background: url("/images/destroy.png") no-repeat 0 0;
+}
+li:hover .destroy {
+	display: inline-block;
+}
+.destroy:hover {
+	background-position: 0 -20px;
+}
 
 /* ============================= */
 /* ! Layout for mobile version   */
